@@ -1,0 +1,11 @@
+D:\Sources\react\paragontax\todos\todos-server\todos-server\bin\Debug\netcoreapp2.0\todos-server.deps.json
+D:\Sources\react\paragontax\todos\todos-server\todos-server\bin\Debug\netcoreapp2.0\todos-server.runtimeconfig.json
+D:\Sources\react\paragontax\todos\todos-server\todos-server\bin\Debug\netcoreapp2.0\todos-server.runtimeconfig.dev.json
+D:\Sources\react\paragontax\todos\todos-server\todos-server\bin\Debug\netcoreapp2.0\todos-server.dll
+D:\Sources\react\paragontax\todos\todos-server\todos-server\bin\Debug\netcoreapp2.0\todos-server.pdb
+D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\todos-server.csprojAssemblyReference.cache
+D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\todos-server.csproj.CoreCompileInputs.cache
+D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\todos-server.AssemblyInfoInputs.cache
+D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\todos-server.AssemblyInfo.cs
+D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\todos-server.dll
+D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\todos-server.pdb
