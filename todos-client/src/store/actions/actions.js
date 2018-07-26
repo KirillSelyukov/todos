@@ -35,23 +35,45 @@ const addTaskFail = (error) => {
 }
 
 const initTask = () => {
-    return dispatch => {
-        axios.get('/tasks.json')
-            .then(({ data }) => {
-                const fetchedTasks = [];
-                for (let key in data) {
-                    fetchedTasks.push({
-                        ...data[key],
-                        id: key
-                    });
-                }
+//     axios.get('http://localhost:51210/api/todos/').then(({data}) => {
+//         const fetchedTasks = [];
+//         for (let key in data) {
+//             fetchedTasks.push({
+//                 ...data[key],
+//                 id: key
+//             });
+//         }
 
-                dispatch(initTaskSuccess(fetchedTasks))
-            })
-            .catch(error => {
-                // TODO:
+//         dispatch(initTaskSuccess(fetchedTasks))
+// })
+return dispatch => {
+    axios.get('http://localhost:51210/api/todos/').then(({data}) => {
+        const fetchedTasks = [];
+        for (let key in data) {
+            fetchedTasks.push({
+                ...data[key],
+                id: key
             });
-    }
+        }
+
+        dispatch(initTaskSuccess(fetchedTasks))
+})
+    // axios.get('/tasks.json')
+    //     .then(({ data }) => {
+    //         const fetchedTasks = [];
+    //         for (let key in data) {
+    //             fetchedTasks.push({
+    //                 ...data[key],
+    //                 id: key
+    //             });
+    //         }
+
+    //         dispatch(initTaskSuccess(fetchedTasks))
+    //     })
+    //     .catch(error => {
+    //         // TODO:
+    //     });
+}
 
 }
 const initTaskSuccess = (tasks) => {

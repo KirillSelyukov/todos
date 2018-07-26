@@ -9,3 +9,4 @@ D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp
 D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\todos-server.AssemblyInfo.cs
 D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\todos-server.dll
 D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\todos-server.pdb
+D:\Sources\react\paragontax\todos\todos-server\todos-server\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

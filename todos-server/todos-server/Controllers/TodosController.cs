@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace todos_server.Controllers
@@ -8,9 +11,13 @@ namespace todos_server.Controllers
 	{
 		// GET api/values
 		[HttpGet]
-		public IEnumerable<string> Get()
+		public string Get()
 		{
-			return new[] {"value1", "value2"};
+			HttpClient client = new HttpClient();
+			Task<HttpResponseMessage> respons = client.GetAsync(new Uri("https://todos-bbc0e.firebaseio.com/tasks.json"));
+			HttpResponseMessage result = respons.Result;
+			string data = result.Content.ReadAsStringAsync().Result;
+			return data;
 		}
 
 		// GET api/values/5
