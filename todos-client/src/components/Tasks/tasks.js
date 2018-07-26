@@ -10,19 +10,15 @@ class Tasks extends Component {
   }
 
   handleDelete = (id) => {
-    console.log(id);
     this.props.onDelete(id);
   }
 
-  handleToggle = (id) => {
-    console.log('handleToggle clicked');
-    this.props.onToggle(id);
-
-  }
-
   renderTasks = () => {
-    console.log(this.props);
-    return this.props.tasks.map((task,i) => <Task key={i} task={task} delete={this.handleDelete} toggle={this.handleToggle} />);
+    console.log(this.props)
+    return this.props.tasks.map((task, i) =>
+      <Task key={i} task={task}
+        delete={() => this.handleDelete(task.id)}
+      />);
   }
 
   render() {
@@ -45,7 +41,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state,
+    tasks: state.tasks,
   }
 }
 

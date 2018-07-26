@@ -1,20 +1,78 @@
 import * as actions from './action-types';
+import axios from '../../axios-todo';
 
-const addTask = (taskName) => {
-    console.log('action.addTask.taskName:', taskName);
+const addTask = ({ title, description }) => {
+    const task = {
+        title: title,
+        description: description,
+        date: Date.now(),
+        status: 0,
+        subtasks: [''],
+        checked: false
+    }
+
+    return dispatch => {
+        axios.post('/tasks.json', task)
+            .then(response => {
+                task.id = response.data.name
+                dispatch(addTaskSuccess(task));
+            })
+            .catch(error => {
+                dispatch(addTaskFail(error));
+            })
+    }
+}
+
+const addTaskSuccess = (task) => {
     return {
         type: actions.ADD_TASK,
-        taskName
+        task
     }
+}
+
+const addTaskFail = (error) => {
+
 }
 
 const initTask = () => {
+    return dispatch => {
+        axios.get('/tasks.json')
+            .then(({ data }) => {
+                const fetchedTasks = [];
+                for (let key in data) {
+                    fetchedTasks.push({
+                        ...data[key],
+                        id: key
+                    });
+                }
+
+                dispatch(initTaskSuccess(fetchedTasks))
+            })
+            .catch(error => {
+                // TODO:
+            });
+    }
+
+}
+const initTaskSuccess = (tasks) => {
     return {
         type: actions.LOAD_TASKS,
+        tasks
     }
 }
-
 const deleteTask = (id) => {
+    return dispatch => {
+        axios.delete('/tasks/' + id + '.json')
+            .then(({ data }) => {
+
+                dispatch(deleteTaskSuccess(id))
+            })
+            .catch(error => {
+                // TODO:
+            });
+    }
+}
+const deleteTaskSuccess = (id) => {
     return {
         type: actions.DELETE_TASK,
         id

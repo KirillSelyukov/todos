@@ -14,31 +14,34 @@ class TasksForm extends Component {
   constructor() {
     super(...arguments);
 
-    this.state = { title: '' };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      title: '',
+      description: ''
+    };
   }
 
-  clearInput() {
-    this.setState({ title: '' });
+  clearInput = () => {
+    this.setState({ title: '', description: '' });
   }
 
-  handleChange(event) {
+  handleTitleChange = (event) => {
     this.setState({ title: event.target.value });
   }
+  handleDescriptionChange = (event) => {
+    this.setState({ description: event.target.value });
+  }
 
-  handleKeyUp(event) {
+  handleKeyUp = (event) => {
     if (event.keyCode === 27) this.clearInput();
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
-    const text = this.state.title.trim();
-    if (text.length) {
-      this.props.onAdd(text);
+    const title = this.state.title.trim();
+    const description = this.state.description.trim();
+    if (title.length) {
+      this.props.onAdd({title, description});
     }
 
     this.clearInput();
@@ -51,13 +54,24 @@ class TasksForm extends Component {
           <h1>Todo List</h1>
         </header>
 
-        <form className='new-task' onSubmit={this.handleSubmit.bind(this)}>
+        <form className='new-task' onSubmit={this.handleSubmit}>
           <input
             type='text'
             ref='textInput'
+            onKeyUp={this.handleKeyUp}
             placeholder='Type to add new tasks'
-            onChange={this.handleChange.bind(this)}
+            onChange={this.handleTitleChange}
+            value={this.state.title}
           />
+          <input
+            type='text'
+            ref='textInput'
+            onKeyUp={this.handleKeyUp}
+            placeholder='Type to add tasks descriptions.'
+            onChange={this.handleDescriptionChange}
+            value={this.state.description}
+          />
+          <button type='submit'> ADD </button>
         </form>
       </div>
     );
@@ -66,7 +80,7 @@ class TasksForm extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAdd: (taksName) => dispatch(addTask(taksName)),
+    onAdd: (task) => dispatch(addTask(task)),
   }
 }
 

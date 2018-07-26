@@ -1,37 +1,28 @@
 import * as actionTypes from '../actions/action-types';
+import { updateObject } from '../../utility';
 
-const initialState = [
-  { _id: 0, text: 'This is task 0', checked: false },
-  { _id: 1, text: 'This is task 1', checked: false },
-  { _id: 2, text: 'This is task 2', checked: false }
-];
+
+const initialState = {
+  tasks: []
+};
 
 const addTask = (state, action) => {
-  const task = {
-    _id: state.length,
-    text: action.taskName
-  }
-  return [...state, task];
+  console.log(state)
+  const newstate = updateObject(state, {tasks: state.tasks.concat(action.task)});
+  console.log(newstate)
+
+  return newstate;
 };
 
 const deleteTask = (state, action) => {
-  const newState = state.filter(task => task._id !== action.id);
-  return newState;
+  const tasks = { tasks: state.tasks.filter(task => task.id !== action.id) };
+  return updateObject(state, tasks);
 };
 
-const loadTask = (state) => {
-  return state;
+const loadTask = (state, action) => {
+  const tasks = { tasks: action.tasks }
+  return updateObject(state, tasks);
 };
-const toggleTask = (state, action) => {
-  if (state._id !== action.id) {
-    return state;
-  }
-
-  return {
-    ...state,
-    checked: !state.checked
-  };
-}
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -40,9 +31,7 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.DELETE_TASK:
       return deleteTask(state, action);
     case actionTypes.LOAD_TASKS:
-      return loadTask(state);
-    case actionTypes.TOGGLE_TASK:
-      return state.map(task => toggleTask(task, action));
+      return loadTask(state, action);
     default:
       return state;
   }
